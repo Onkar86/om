@@ -2,34 +2,121 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  body {
+    @apply bg-background text-white antialiased overflow-x-hidden;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-800 rounded-full hover:bg-zinc-700 transition-colors;
+  }
 }
 
-@keyframes fadeInUp {
+@layer utilities {
+  .glass {
+    @apply bg-glass-black/80 backdrop-blur-xl border border-white/10;
+  }
+
+  .glass-card {
+    @apply bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/50;
+  }
+}
+
+/* Base Animations */
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-float {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.5s ease-out forwards;
+@keyframes floating {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+@keyframes scan {
+  0% {
+    transform: translateY(0);
   }
-  to {
-    opacity: 1;
+
+  100% {
+    transform: translateY(600px);
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
+.animate-scan {
+  animation: scan 5s ease-in-out infinite;
+}
+
+@keyframes float-particle {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.4;
+  }
+
+  25% {
+    transform: translate(10px, -15px);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: translate(-8px, -25px);
+    opacity: 0.3;
+  }
+
+  75% {
+    transform: translate(12px, -18px);
+    opacity: 0.6;
+  }
+}
+
+.animate-float-particle {
+  animation: float-particle 8s ease-in-out infinite;
+}
+
+/* 3D Canvas fixes */
+canvas {
+  display: block;
+  outline: none;
 }

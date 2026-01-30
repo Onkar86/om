@@ -1,38 +1,34 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
-        teal: {
-          400: '#2DD4BF',
-          500: '#14B8A6',
-          600: '#0D9488',
-        },
-        gray: {
-          700: '#374151',
-          800: '#1F2937',
-          900: '#111827',
-        },
-      },
-      spacing: {
-        '72': '18rem',
-        '84': '21rem',
-        '96': '24rem',
+        background: '#030303',
+        surface: '#0a0a0a',
+        primary: '#00f0ff', // Cyberpunk cyan
+        secondary: '#bf00ff', // Neon purple
+        accent: '#f59e0b', // Gold/Amber
+        'glass-black': 'rgba(10, 10, 10, 0.7)',
+        'glass-white': 'rgba(255, 255, 255, 0.05)',
       },
       animation: {
-        'bounce': 'bounce 1s infinite',
+        'glow': 'glow 2s ease-in-out infinite alternate',
       },
       keyframes: {
-        bounce: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+        glow: {
+          '0%': { boxShadow: '0 0 5px #00f0ff' },
+          '100%': { boxShadow: '0 0 20px #00f0ff, 0 0 10px #bf00ff' },
         }
-      },
+      }
     },
   },
   plugins: [],
-};
+}
